@@ -8,6 +8,10 @@ on:
       branches:
         - master
 
+env:
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 jobs:
     terraform-check:
         name: Terraform format check
@@ -60,6 +64,3 @@ jobs:
             
             - name: Terraform apply
               run: terraform apply -auto-approve
-              env:
-                AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
