@@ -16,10 +16,11 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
-              - name: Set up Terraform
-                uses: hashicorp/setup-terraform@v3
-                with:
-                    terraform_version: 1.9.6
+            - name: Set up Terraform
+              uses: hashicorp/setup-terraform@v3
+              with:
+                terraform_version: 1.9.6
+
             - name: Terraform format check
               run: terraform fmt -check -list=false
     
