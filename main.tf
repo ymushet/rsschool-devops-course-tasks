@@ -12,7 +12,7 @@ terraform {
   backend "s3" {
     bucket         = "rsschool-devops-tfstate"
     key            = "state/terraform.tfstate"
-    region         = "us-east-1"
+    region         = var.aws_region
     encrypt        = true
     dynamodb_table = "rsschool-devops-terraform-lock-table"
   }
