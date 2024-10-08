@@ -68,11 +68,11 @@ jobs:
               with:
                   terraform_version: 1.9.6
             - name: Configure AWS access
-            uses: aws-actions/configure-aws-credentials@v4
-            with:
-                audience: sts.amazonaws.com
-                aws-region: us-east-1
-                role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  audience: sts.amazonaws.com
+                  aws-region: us-east-1
+                  role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
                     
             - name: Terraform init
               run: terraform init
