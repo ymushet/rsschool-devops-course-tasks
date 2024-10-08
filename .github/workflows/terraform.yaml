@@ -13,8 +13,7 @@ permissions:
   contents: read
 
 env:
-    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
 
 jobs:
     terraform-check:
@@ -44,12 +43,12 @@ jobs:
               with:
                   terraform_version: 1.9.6
 
-            # - name: Configure AWS access
-            #   uses: aws-actions/configure-aws-credentials@v4
-            #   with:
-            #       audience: sts.amazonaws.com
-            #       aws-region: us-east-1
-            #       role-to-assume: arn:aws:iam::$AWS_ACCOUNT_ID:role/GithubActionsRole
+            - name: Configure AWS access
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  audience: sts.amazonaws.com
+                  aws-region: us-east-1
+                  role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
             - name: Terraform init
               run: terraform init
             
@@ -68,7 +67,13 @@ jobs:
               uses: hashicorp/setup-terraform@v3
               with:
                   terraform_version: 1.9.6
-
+            - name: Configure AWS access
+            uses: aws-actions/configure-aws-credentials@v4
+            with:
+                audience: sts.amazonaws.com
+                aws-region: us-east-1
+                role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+                    
             - name: Terraform init
               run: terraform init
             
