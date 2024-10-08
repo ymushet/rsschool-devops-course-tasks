@@ -20,12 +20,17 @@ resource "aws_iam_role" "GithubActionsRole" {
         Condition = {
           StringEquals = {
             "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com",
+          },
+          StringLike = {
             "token.actions.githubusercontent.com:sub" = "repo:ymushet/rsschool-devops-course-tasks:*"
           }
         }
       }
     ]
   })
+  tags = {
+    tag-key = "Github Actions Role"
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "GithubActionsRole_AmazonEC2FullAccess" {
