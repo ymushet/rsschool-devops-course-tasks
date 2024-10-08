@@ -67,3 +67,8 @@ resource "aws_iam_role_policy_attachment" "GithubActionsRole_AmazonEventBridgeFu
   role       = aws_iam_role.GithubActionsRole.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonEventBridgeFullAccess"
 }
+
+resource "aws_iam_role_policy_attachment" "GithubActionsRole_AmazonDynamoDBFullAccess" {
+  role       = aws_iam_role.GithubActionsRole.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
