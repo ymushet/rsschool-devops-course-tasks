@@ -48,7 +48,7 @@ jobs:
                   role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
             - name: Terraform init
               run: terraform init
-            
+
             - name: Terraform plan
               run: terraform plan
     
@@ -64,15 +64,16 @@ jobs:
               uses: hashicorp/setup-terraform@v3
               with:
                   terraform_version: 1.9.6
+
             - name: Configure AWS access
               uses: aws-actions/configure-aws-credentials@v4
               with:
                   audience: sts.amazonaws.com
                   aws-region: us-east-1
                   role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-                    
+
             - name: Terraform init
               run: terraform init
-            
+  
             - name: Terraform apply
               run: terraform apply -auto-approve
